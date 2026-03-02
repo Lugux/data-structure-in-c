@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="data-structure-in-c" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/data-structure-in-c" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/data-structure-in-c" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="common/common_macros.h" />
+		<Unit filename="lists/doubly_linked_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lists/doubly_linked_list.h" />
+		<Unit filename="lists/singly_linked_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lists/singly_linked_list.h" />
+		<Unit filename="queues/dynamic_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="queues/dynamic_queue.h" />
+		<Unit filename="queues/static_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="queues/static_queue.h" />
+		<Unit filename="stacks/dynamic_stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="stacks/dynamic_stack.h" />
+		<Unit filename="stacks/static_stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="stacks/static_stack.h" />
+		<Unit filename="trees/binary_tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="trees/binary_tree.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
