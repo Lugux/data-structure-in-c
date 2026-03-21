@@ -10,7 +10,7 @@ typedef struct doubly_linked_list_node
     void *data;
     size_t dataSize;
     struct doubly_linked_list_node *next;
-    struct doubly_linked_list_node *previus;
+    struct doubly_linked_list_node *previous;
 }doubly_linked_list_node;
 
 typedef struct

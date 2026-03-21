@@ -49,9 +49,10 @@ int singly_linked_list_insert_at_end(singly_linked_list *list, const void *data,
     memcpy(new->data, data, dataSize);
     new->dataSize = dataSize;
     new->next = NULL;
-    list->tail->next = new;
     if(!list->head)
         list->head = new;
+    else
+        list->tail->next = new;
     list->tail = new;
     return 1;
 }
@@ -60,28 +61,19 @@ int singly_linked_list_insert_at_position(singly_linked_list *list, const void *
 {
     if(!list || !data || !dataSize)
         return 0;
-    if(position == 0)
+    if(!list->head)
     {
-        if(singly_linked_list_insert_at_first(list,data,dataSize))
-            return 1;
-        else
-            return 0;
+        return position == 0 ? singly_linked_list_insert_at_first(list,data,dataSize) : 0;
     }
-    singly_linked_list_node *prevNode, *posNode = list->head;
-    while(posNode->next && position)
+    if(position == 0)
+        return singly_linked_list_insert_at_first(list,data,dataSize);
+    singly_linked_list_node *prevNode = list->head;
+    while(prevNode->next && position > 1)
     {
-        prevNode = posNode;
-        posNode = posNode->next;
+        prevNode = prevNode->next;
         position --;
     }
-    if(position == 1)
-    {
-        if(singly_linked_list_insert_at_end(list,data,dataSize))
-            return 1;
-        else
-            return 0;
-    }
-    if(position != 0)
+    if(position > 1)
         return 0;
 
     singly_linked_list_node *new = malloc(sizeof(singly_linked_list_node));
@@ -95,8 +87,10 @@ int singly_linked_list_insert_at_position(singly_linked_list *list, const void *
     }
     memcpy(new->data, data, dataSize);
     new->dataSize = dataSize;
-    new->next = posNode;
+    new->next = prevNode->next;
     prevNode->next = new;
+    if(!new->next)
+        list->tail = new;
     return 1;
 }
 
@@ -138,10 +132,12 @@ int singly_linked_list_delete_at_first(singly_linked_list *list, void *data, siz
         return 0;
     memcpy(data, list->head->data, MIN(list->head->dataSize, dataSize));
 
-    singly_linked_list_node *temp = list->head;
+    singly_linked_list_node *tempNode = list->head;
     list->head = list->head->next;
-    free(temp->data);
-    free(temp);
+    if(!list->head)
+        list->tail = NULL;
+    free(tempNode->data);
+    free(tempNode);
     return 1;
 }
 
@@ -149,24 +145,24 @@ int singly_linked_list_delete_at_end(singly_linked_list *list, void *data, size_
 {
     if(!list->head || !data || !dataSize)
         return 0;
-    memcpy(data, list->head->data, MIN(list->head->dataSize, dataSize));
+    memcpy(data, list->tail->data, MIN(list->tail->dataSize, dataSize));
 
-    singly_linked_list_node *temp = list->head;
-    if(temp == list->tail)
+    singly_linked_list_node *tempNode = list->head;
+    if(tempNode == list->tail)
     {
         list->head = NULL;
         list->tail = NULL;
     }
     else
     {
-        while(temp->next != list->tail)
-            temp = temp->next;
-        list->tail = temp;
-        temp = temp->next;
+        while(tempNode->next != list->tail)
+            tempNode = tempNode->next;
+        list->tail = tempNode;
+        tempNode = tempNode->next;
         list->tail->next = NULL;
     }
-    free(temp->data);
-    free(temp);
+    free(tempNode->data);
+    free(tempNode);
     return 1;
 }
 
@@ -181,23 +177,20 @@ int singly_linked_list_delete_at_position(singly_linked_list *list, void *data, 
         else
             return 0;
     }
-    singly_linked_list_node *prevNode, *tempNode = list->head;
-    while(tempNode->next && position)
+    singly_linked_list_node *prevNode = list->head;
+    while(prevNode->next && position > 1)
     {
-        prevNode = tempNode;
-        tempNode = tempNode->next;
+        prevNode = prevNode->next;
         position --;
     }
-    if(position == 1)
-    {
-        if(singly_linked_list_delete_at_end(list,data,dataSize))
-            return 1;
-        else
-            return 0;
-    }
-    if(position != 0)
+    if(position > 1)
         return 0;
+    singly_linked_list_node *tempNode = prevNode->next;
     prevNode->next = tempNode->next;
+
+    if(tempNode == list->tail)
+        list->tail = prevNode;
+
     free(tempNode->data);
     free(tempNode);
     return 1;
@@ -205,17 +198,17 @@ int singly_linked_list_delete_at_position(singly_linked_list *list, void *data, 
 
 int singly_linked_list_is_empty(const singly_linked_list *list)
 {
-    return list->head == NULL;
+    return !list || !list->head;
 }
 
 void singly_linked_list_destroy(singly_linked_list *list)
 {
     while(list->head)
     {
-        singly_linked_list_node *temp = list->head;
+        singly_linked_list_node *tempNode = list->head;
         list->head = list->head->next;
-        free(temp->data);
-        free(temp);
+        free(tempNode->data);
+        free(tempNode);
     }
     list->tail = NULL;
 }
