@@ -1,5 +1,5 @@
-#ifndef BINARY_TREE_H_INCLUDED
-#define BINARY_TREE_H_INCLUDED
+#ifndef BINARY_TREE_H
+#define BINARY_TREE_H
 
 #include <stddef.h>
 
@@ -39,4 +39,4 @@ const bst_node* bst_max_node(const bst *tree);
 int bst_is_balanced(const bst *tree);
 bst bst_clone(const bst *tree);
 
-#endif // BINARY_TREE_H_INCLUDED
+#endif // BINARY_TREE_H

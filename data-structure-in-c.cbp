@@ -32,10 +32,10 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="common/common_macros.h" />
-		<Unit filename="hash_table/hash_table.c">
+		<Unit filename="hash/hash_table.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="hash_table/hash_table.h" />
+		<Unit filename="hash/hash_table.h" />
 		<Unit filename="lists/doubly_linked_list.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -63,10 +63,35 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="stacks/static_stack.h" />
-		<Unit filename="trees/binary_tree.c">
+		<Unit filename="tests/binary_search_tree_test.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="trees/binary_tree.h" />
+		<Unit filename="tests/doubly_linked_list_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tests/dynamic_queue_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tests/dynamic_stack_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tests/hash_table_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tests/singly_linked_list_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tests/static_queue_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tests/static_stack_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tests/tests.h" />
+		<Unit filename="trees/binary_search_tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="trees/binary_search_tree.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

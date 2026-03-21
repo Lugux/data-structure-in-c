@@ -1,85 +1,142 @@
 # Data Structures in C
 
-This repository contains my implementation of fundamental data structures in C, built from scratch as part of my learning process.
+## Overview
 
-The goal of this project is to deeply understand how these structures work internally, focusing on memory management, efficiency, and clean API design.
+This repository contains a complete implementation of fundamental data structures in C, designed with a focus on:
 
-## 📦 Implemented Structures
+* Generic data handling (void pointers)
+* Memory safety and dynamic allocation
+* Modular design
+* Thorough testing
 
-* Static Stack
-* Dynamic Stack
-* Static Queue
-* Dynamic Queue
-* Singly Linked List
-* Doubly Linked List
-* Binary Search Tree (BST)
-* Hash Table (with chaining and dynamic resizing)
-
-## 🧠 Key Concepts
-
-Throughout this project, I focused on:
-
-* Manual memory management (`malloc`, `calloc`, `realloc`, `free`)
-* Pointer manipulation
-* Time and space complexity
-* Generic data handling using `void *`
-* Collision handling in hash tables (separate chaining)
-* Dynamic resizing and rehashing
-
-## 🚧 Work in Progress
-
-* Unit tests for each data structure
-* Interactive menu to test all structures from a single program
-* Code cleanup and documentation improvements
-
-## 🛠️ Usage Example
-
-```c
-hash_table ht;
-
-hash_init(&ht, 16);
-
-int value = 42;
-hash_insert(&ht, "example", &value, sizeof(int));
-
-int result;
-hash_get(&ht, "example", &result, sizeof(int));
-
-printf("%d\n", result);
-
-hash_destroy(&ht);
-```
-
-## 📁 Project Structure
-
-```
-/data-structures
-│
-├── stack/
-├── queue/
-├── list/
-├── tree/
-├── hash_table/
-├── common/
-└── main.c (coming soon)
-```
-
-## 🎯 Motivation
-
-This project was built to strengthen my understanding of low-level programming and core computer science concepts.
-
-Instead of using built-in libraries, I implemented everything manually to gain better intuition about how data is stored, accessed, and managed in memory.
-
-## 📌 Notes
-
-This is a learning-oriented project, but I aimed to keep the code clean, modular, and reusable.
-
-Future improvements may include:
-
-* Iterators
-* Better abstraction layers
-* Performance benchmarking
+All structures are implemented from scratch without external dependencies and include dedicated test suites to validate correctness and edge cases.
 
 ---
 
-Thanks for checking out the project!
+## Implemented Data Structures
+
+### Stacks
+
+* Static Stack (array-based, contiguous memory)
+* Dynamic Stack (linked list-based)
+
+### Queues
+
+* Static Queue (circular buffer with variable-sized elements)
+* Dynamic Queue (linked list-based)
+
+### Linked Lists
+
+* Singly Linked List
+* Doubly Linked List
+
+### Trees
+
+* Binary Search Tree (BST)
+
+  * Insert, search, delete
+  * Traversals (inorder, preorder, postorder)
+  * Min / Max
+  * Height, size, leaf count
+  * Balance check
+  * Clone
+
+### Hash Table
+
+* Separate chaining (linked lists)
+* Dynamic resizing (rehashing)
+* Insert, update, delete, upsert, get, contains
+
+---
+
+## Features
+
+* Generic storage using `void*`
+* Deep copy of stored elements
+* Memory-safe operations (malloc, free, realloc)
+* Collision handling in hash table
+* Circular buffer implementation for static queue
+* Full test coverage for each data structure
+* Clean and modular architecture
+
+---
+
+## Project Structure
+
+```
+/common        -> shared macros and utilities
+/stacks        -> static and dynamic stacks
+/queues        -> static and dynamic queues
+/lists         -> singly and doubly linked lists
+/trees         -> binary search tree
+/hash          -> hash table implementation
+/tests         -> test suite for all structures
+main.c         -> test runner
+```
+
+---
+
+## How to Compile
+
+Using GCC:
+
+```
+gcc main.c tests/*.c stacks/*.c queues/*.c lists/*.c trees/*.c hash/*.c -o program
+```
+
+Then run:
+
+```
+./program
+```
+
+---
+
+## Running Tests
+
+All data structures include dedicated test functions.
+
+The main file runs all tests sequentially:
+
+* Stack tests
+* Queue tests
+* Linked list tests
+* Binary tree tests
+* Hash table tests
+
+Each test validates correctness, edge cases, and memory behavior using assertions.
+
+---
+
+## Design Decisions
+
+* All structures are implemented generically using `void*` and explicit size tracking.
+* Memory ownership is handled internally (deep copies on insert).
+* Hash table uses separate chaining for collision resolution.
+* Static queue supports variable-sized elements using a circular buffer.
+* Binary Search Tree does not allow duplicate elements.
+
+---
+
+## Future Improvements (Coming Soon)
+
+* Interactive CLI menu to manually test and explore structures
+* Additional data structures and their tests
+
+---
+
+## Purpose
+
+This project was developed as a learning and portfolio exercise to demonstrate:
+
+* Strong understanding of data structures
+* Low-level memory management in C
+* Ability to design reusable and generic components
+* Testing and validation practices
+
+---
+
+## License
+
+This project is open-source and available for educational and personal use.
+

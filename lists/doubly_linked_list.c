@@ -199,6 +199,8 @@ int doubly_linked_list_is_empty(const doubly_linked_list *list)
 
 void doubly_linked_list_destroy(doubly_linked_list *list)
 {
+    if(!list)
+        return;
     while(list->head)
     {
         doubly_linked_list_node *tempNode = list->head;

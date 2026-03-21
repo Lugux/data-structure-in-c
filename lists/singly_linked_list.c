@@ -96,7 +96,7 @@ int singly_linked_list_insert_at_position(singly_linked_list *list, const void *
 
 int singly_linked_list_peek_at_first(const singly_linked_list *list, void *data, size_t dataSize)
 {
-    if(!list->head || !data || !dataSize)
+    if(!list || !list->head || !data || !dataSize)
         return 0;
     memcpy(data, list->head->data, MIN(list->head->dataSize, dataSize));
     return 1;
@@ -104,7 +104,7 @@ int singly_linked_list_peek_at_first(const singly_linked_list *list, void *data,
 
 int singly_linked_list_peek_at_end(const singly_linked_list *list, void *data, size_t dataSize)
 {
-    if(!list->head || !data || !dataSize)
+    if(!list || !list->head || !data || !dataSize)
         return 0;
     memcpy(data, list->tail->data, MIN(list->tail->dataSize, dataSize));
     return 1;
@@ -112,7 +112,7 @@ int singly_linked_list_peek_at_end(const singly_linked_list *list, void *data, s
 
 int singly_linked_list_peek_at_position(const singly_linked_list *list, void *data, size_t dataSize, size_t position)
 {
-    if(!list->head || !data || !dataSize)
+    if(!list || !list->head || !data || !dataSize)
         return 0;
     singly_linked_list_node *tempNode = list->head;
     while(tempNode->next && position)
@@ -128,7 +128,7 @@ int singly_linked_list_peek_at_position(const singly_linked_list *list, void *da
 
 int singly_linked_list_delete_at_first(singly_linked_list *list, void *data, size_t dataSize)
 {
-    if(!list->head || !data || !dataSize)
+    if(!list || !list->head || !data || !dataSize)
         return 0;
     memcpy(data, list->head->data, MIN(list->head->dataSize, dataSize));
 
@@ -143,7 +143,7 @@ int singly_linked_list_delete_at_first(singly_linked_list *list, void *data, siz
 
 int singly_linked_list_delete_at_end(singly_linked_list *list, void *data, size_t dataSize)
 {
-    if(!list->head || !data || !dataSize)
+    if(!list || !list->head || !data || !dataSize)
         return 0;
     memcpy(data, list->tail->data, MIN(list->tail->dataSize, dataSize));
 
@@ -168,7 +168,7 @@ int singly_linked_list_delete_at_end(singly_linked_list *list, void *data, size_
 
 int singly_linked_list_delete_at_position(singly_linked_list *list, void *data, size_t dataSize, size_t position)
 {
-    if(!list || !data || !dataSize)
+    if(!list || !list->head || !data || !dataSize)
         return 0;
     if(position == 0)
     {
@@ -203,6 +203,8 @@ int singly_linked_list_is_empty(const singly_linked_list *list)
 
 void singly_linked_list_destroy(singly_linked_list *list)
 {
+    if(!list)
+        return;
     while(list->head)
     {
         singly_linked_list_node *tempNode = list->head;
